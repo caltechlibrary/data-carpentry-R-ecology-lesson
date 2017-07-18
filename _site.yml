@@ -1,6 +1,6 @@
 navbar:
   left:
-    - text: "Home"
+    - text: "Lesson Home"
       href: index.html
     - text: "Before we start"
       href: 00-before-we-start.html
