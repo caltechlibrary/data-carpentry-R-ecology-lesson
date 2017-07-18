@@ -1,5 +1,5 @@
 ---
-title: 'Data Carpentry: R for data analysis and visualization of Ecological Data'
+title: 'Data Carpentry: R for Data Analysis and Visualization of Ecological Data'
 author: "François Michonneau & Auriel Fournier (Lesson Maintainers)"
 ---
 
@@ -10,7 +10,6 @@ author: "François Michonneau & Auriel Fournier (Lesson Maintainers)"
 </div>
 
 <p></p>
-
 
 Data Carpentry's aim is to teach researchers basic concepts, skills,
 and tools for working with data so that they can get more done in less
