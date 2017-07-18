@@ -34,8 +34,6 @@ RStudio is currently a very popular way to not only write your R scripts but
 also to interact with the R software. To function correctly, RStudio needs R and
 therefore both need to be installed on your computer.
 
-This is a test of rendering
-
 ## Why learn R?
 
 ### R does not involve lots of pointing and clicking, and that's a good thing
