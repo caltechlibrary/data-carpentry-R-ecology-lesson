@@ -58,23 +58,26 @@ syntax, it is good practice to always use `<-` for assignments.
 In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
 same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
 
-
-Objects can be given any name such as `x`, `current_temperature`, or
-`subject_id`. You want your object names to be explicit and not too long. They
-cannot start with a number (`2x` is not valid, but `x2` is). R is case sensitive
-(e.g., `weight_kg` is different from `Weight_kg`). There are some names that
-cannot be used because they are the names of fundamental functions in R (e.g.,
-`if`, `else`, `for`,
-see
+Guidelines for naming Objects:
+* Objects can be given any name such as `x`, `current_temperature`, or
+`subject_id`. You want your object names to be explicit and not too long. 
+* Object names cannot start with a number (`2x` is not valid, but `x2` is). 
+* R is case sensitive (e.g., `weight_kg` is different from `Weight_kg`). 
+* There are some names that cannot be used because they are the names of fundamental 
+functions in R (e.g., `if`, `else`, `for`, see
 [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
-for a complete list). In general, even if it's allowed, it's best to not use
+for a complete list). 
+* In general, even if it's allowed, it's best to not use
 other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). If in doubt,
-check the help to see if the name is already in use. It's also best to avoid
-dots (`.`) within a variable name as in `my.dataset`. There are many functions
-in R with dots in their names for historical reasons, but because dots have a
-special meaning in R (for methods) and other programming languages, it's best to
-avoid them. It is also recommended to use nouns for variable names, and verbs
-for function names. It's important to be consistent in the styling of your code
+check the help to see if the name is already in use. 
+* It's also best to avoid dots (`.`) within a variable name as in `my.dataset`. 
+There are many functions in R with dots in their names for historical reasons, but 
+because dots have a special meaning in R (for methods) and other programming languages, 
+it's best to avoid them. 
+* It is also recommended to use nouns for variable names, and verbs
+for function names. 
+
+It's important to be consistent in the styling of your code
 (where you put spaces, how you name variables, etc.). Using a consistent coding
 style makes your code clearer to read for your future self and your
 collaborators. In R, two popular style guides
