@@ -24,7 +24,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -311,7 +310,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">Lesson Home</a>
 </li>
 <li>
   <a href="00-before-we-start.html">Before we start</a>
@@ -329,18 +328,12 @@ div.tocify {
   <a href="04-visualization-ggplot2.html">Visualizing data</a>
 </li>
 <li>
-  <a href="05-r-and-databases.html">R and SQL</a>
-</li>
-<li>
   <a href="code-handout.R">Code Handout</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/datacarpentry/R-ecology-lesson">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
+  <a href="https://caltechlibrary.github.io/2017-07-20-caltech/">Workshop Home</a>
 </li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -370,6 +363,8 @@ div.tocify {
 <hr />
 <p>We start by loading the required packages.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre><code>#&gt; Warning: Installed Rcpp (0.12.12) different from Rcpp used to build dplyr (0.12.11).
+#&gt; Please reinstall dplyr to avoid random crashes or undefined behavior.</code></pre>
 <div id="plotting-with-ggplot2" class="section level2">
 <h2>Plotting with <strong><code>ggplot2</code></strong></h2>
 <p><strong><code>ggplot2</code></strong> is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties, so we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatterplot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking.</p>
