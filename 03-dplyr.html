@@ -24,7 +24,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -311,7 +310,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">Lesson Home</a>
 </li>
 <li>
   <a href="00-before-we-start.html">Before we start</a>
@@ -329,18 +328,12 @@ div.tocify {
   <a href="04-visualization-ggplot2.html">Visualizing data</a>
 </li>
 <li>
-  <a href="05-r-and-databases.html">R and SQL</a>
-</li>
-<li>
   <a href="code-handout.R">Code Handout</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/datacarpentry/R-ecology-lesson">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
+  <a href="https://caltechlibrary.github.io/2017-07-20-caltech/">Workshop Home</a>
 </li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -380,6 +373,8 @@ div.tocify {
 <p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <strong><code>dplyr</code></strong>. <strong><code>dplyr</code></strong> is a package for making tabular data manipulation easier. It pairs nicely with <strong><code>tidyr</code></strong> which enables you to swiftly convert between different data formats for plotting and analysis.</p>
 <p>Packages in R are basically sets of additional functions that let you do more stuff. The functions we’ve been using so far, like <code>str()</code> or <code>data.frame()</code>, come built into R; packages give you access to more of them. Before you use a package for the first time you need to install it on your machine, and then you should import it in every subsequent R session when you need it. You should already have installed the <strong><code>tidyverse</code></strong> package. This is an “umbrella-package” that installs several packages useful for data analysis which work together well such as <strong><code>tidyr</code></strong>, <strong><code>dplyr</code></strong>, <strong><code>ggplot2</code></strong>, etc. To load the package type:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)    ## load the tidyverse packages, incl. dplyr</code></pre></div>
+<pre><code>#&gt; Warning: Installed Rcpp (0.12.12) different from Rcpp used to build dplyr (0.12.11).
+#&gt; Please reinstall dplyr to avoid random crashes or undefined behavior.</code></pre>
 <div id="what-are-dplyr-and-tidyr" class="section level2">
 <h2>What are <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong>?</h2>
 <p>The package <strong><code>dplyr</code></strong> provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames, with many common tasks optimized by being written in a compiled language (C++). An additional feature is the ability to work directly with data stored in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query are returned.</p>
@@ -398,7 +393,7 @@ div.tocify {
 <h2>Pipes</h2>
 <p>But what if you wanted to select and filter at the same time? There are three ways to do this: use intermediate steps, nested functions, or pipes.</p>
 <p>With intermediate steps, you essentially create a temporary data frame and use that as input to the next function. This can clutter up your workspace with lots of objects. You can also nest functions (i.e. one function inside of another). This is handy, but can be difficult to read if too many functions are nested as things are evaluated from the inside out.</p>
-<p>The last option, pipes, are a fairly recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package, installed automatically with <strong><code>dplyr</code></strong>.</p>
+<p>The last option, pipes, are a fairly recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package, installed automatically with <strong><code>dplyr</code></strong>. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> if you have a Mac.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)</code></pre></div>
@@ -429,6 +424,10 @@ surveys %>%
 <p>To create a new column of weight in kg:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>)</code></pre></div>
+<p>You can also create a second new column based on the first new column within the same call of <code>mutate()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>,
+         <span class="dt">weight_kg2 =</span> weight_kg *<span class="st"> </span><span class="dv">2</span>)</code></pre></div>
 <p>If this runs off your screen and you just want to see the first few rows, you can use a pipe to view the <code>head()</code> of the data. (Pipes work with non-<strong><code>dplyr</code></strong> functions, too, as long as the <strong><code>dplyr</code></strong> or <code>magrittr</code> package is loaded).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>) %&gt;%
@@ -466,7 +465,7 @@ surveys_hindfoot_half <- surveys %>%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<p>You may also have noticed that the output from these calls doesn’t run off the screen anymore. That’s because <strong><code>dplyr</code></strong> has changed our <code>data.frame</code> object to an object of class <code>tbl_df</code>, also known as a “tibble”. Tibble’s data structure is very similar to a data frame. For our purposes the only differences is that, (1) in addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen, (2) columns of class <code>character</code> are never converted into factors.</p>
+<p>You may also have noticed that the output from these calls doesn’t run off the screen anymore. That’s because <strong><code>dplyr</code></strong> has changed our <code>data.frame</code> object to an object of class <code>tbl_df</code>, also known as a “tibble”. Tibble’s data structure is very similar to a data frame. For our purposes the only differences are that, (1) in addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen, (2) columns of class <code>character</code> are never converted into factors.</p>
 <p>You can also group by multiple columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
@@ -530,11 +529,11 @@ surveys_hindfoot_half <- surveys %>%
 <span class="kw">head</span>(surveys_gw_wide)</code></pre></div>
 <p>Notice that some genera have <code>NA</code> values. That’s because some of those genera don’t have any record in that plot. Sometimes it is fine to leave those as <code>NA</code>. Sometimes we want to fill them as zeros, in which case we would add the argument <code>fill=0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw %&gt;%
-<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight, <span class="dt">fill=</span><span class="dv">0</span>) %&gt;%
+<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight, <span class="dt">fill =</span> <span class="dv">0</span>) %&gt;%
 <span class="st">  </span>head</code></pre></div>
 <p>We can now do things like plot the weight of <em>Baiomys</em> against <em>Chaetodipus</em> or examine their correlation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw %&gt;%
-<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight, <span class="dt">fill=</span><span class="dv">0</span>) %&gt;%
+<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight, <span class="dt">fill =</span> <span class="dv">0</span>) %&gt;%
 <span class="st">  </span><span class="kw">cor</span>(<span class="dt">use =</span> <span class="st">&quot;pairwise.complete&quot;</span>)</code></pre></div>
 </div>
 <div id="wide-to-long-with-gather" class="section level4">
@@ -590,7 +589,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <p>To make sure that everyone has the same dataset, check that <code>surveys_complete</code> has 30463 rows and 13 columns by typing <code>dim(surveys_complete)</code>.</p>
 <p>Now that our dataset is ready, we can save it as a CSV file in our <code>data_output</code> folder. By default, <code>write.csv()</code> includes a column with row names (in our case the names are just the row numbers), so we need to add <code>row.names = FALSE</code> so they are not included:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(surveys_complete, <span class="dt">file =</span> <span class="st">&quot;data_output/surveys_complete.csv&quot;</span>,
-          <span class="dt">row.names=</span><span class="ot">FALSE</span>)</code></pre></div>
+          <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
 
 <hr/>
