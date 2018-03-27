@@ -21,6 +21,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 >   functions.
 > * Demonstrate how to provide sufficient information for
 >   troubleshooting with the R user community.
+> * This is a test line.
 
 ------------
 
